@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/base.css">
+</head>
+<body>
+<div v-cloak id="app">
+    <!--目录显示-->
+    <div id="index-container" class="container">
+    <div  class="row">
+        <!--单个视频盒子-->
+        <div v-for="(item,i) in indexData.pageLength" class="col-sm-3 col-xs-6 views-column-3 box-defult">
+            <!--节点-->
+            <div id="" class="node clearfix">
+                <div>
+                    <!--喜欢和观看标志-->
+                    <div class="icon-bg">
+                        <div class="right-icon likes-icon inline">
+                            <i class="glyphicon glyphicon-heart">
+                                {{indexData.videoIndex[i].love}}
+                            </i>
+                        </div>
+                        <div class="left-icon likes-icon inline">
+                            <i class="glyphicon glyphicon-eye-open">
+                                {{indexData.videoIndex[i].views}}
+                            </i>
+                        </div>
+                    </div>
+                    <!--缩略图部分-->
+                    <div class="field">
+                        <div class="field-items">
+                            <div class="field-item even">
+                                <a :href="'/video/'+indexData.videoIndex[i].dirname">
+                                    <img :src="'/video/'+videoIndex[i].dirname+'/'+videoIndex[i].dirname+'.jpg'" width="100%" alt="" title="">
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--preview-->
+                    <div class="preview"></div>
+                </div>
+                <div class="text text-hidden">
+                    <h3 class="title">
+                        <a class="text-hidden" :href="'/video/'+videoIndex[i].dirname">
+                            {{videoIndex[i].title}}
+                        </a>
+                        <br>
+                        <a href="" title="查看用户资料" class="username">
+                            {{videoIndex[i].producer}}
+                        </a>
+                    </h3>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+    <!--分页-->
+    <footer id="pafeList" class="container">
+        <nav id="pageOrder" aria-label="Page navigation" class="center">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li v-for="(item,i) in pageList.pagelist">
+                    <a :href="'/'+(pageList.pageurl[i]-1)" :class="{'font-black':(pageList.pagelist[i]-1)===curPage}">
+                    <!--<a :href="'/'+(pageList.pageurl[i]-1)" :class="[(pageList.pagelist[i]-1)===curPage?'font-black':'']">-->
+                    {{pageList.pagelist[i]}}
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+
+</div>
+
+
+
+
+
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="./js/jq.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="./js/bootstrap.js"></script>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-resource.js"></script>
+<script src="./js/axios.js"></script>
+<!--vue操作-->
+<script>
+    Vue.prototype.axios=axios;
+    // axios.defaults.baseURL='http://127.0.0.1:3000';
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            indexData:"",
+            videoIndex:[],
+            pageList:"",
+            curPage:"",
+        },
+        created(){
+            this.getApi()
+        },
+        methods:{
+                getApi(){
+                    let _this = this;
+                    console.log("=========window.location.href=======",window.location.href);
+                    let requestedUrl = window.location.href;
+                    console.log(requestedUrl);
+                    if (requestedUrl==="http://127.0.0.1:3000/"){
+                        requestedUrl="http://127.0.0.1:3000";
+                        console.log(requestedUrl);
+                    }
+                    axios.get(requestedUrl+"/api").then(function(response,) {
+                            _this.indexData = response.data;
+                            _this.videoIndex = response.data.videoIndex;
+                            _this.pageList = response.data.pageList;
+                            _this.curPage = response.data.curPage;
+                            if (_this.indexData.curPage===0){
+
+                            }
+                            console.log("=========pageList=======",response.data.pageList.pagelist[0]);
+                            console.log("=========pageList=======",_this.pageList.pagelist[0])
+
+                        });
+
+                    // this.$http.get('http://127.0.0.1:3000/api').then(result => {
+                    //     // 注意： 通过 $http 获取到的数据，都在 result.body 中放着
+                    //     let a = result.body;
+                    //     console.log(result);
+                    //     this.indexData = a.curPage;
+                    //     // console.log(this.indexData)
+                    // })
+                },
+
+                }
+        },
+    )
+</script>
+
+</body>
+</html>

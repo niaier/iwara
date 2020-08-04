@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>播放界面</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/videoPlay.css">
+</head>
+<body>
+<div v-cloak id="app">
+    <div class="container">
+        <div title="播放窗口">
+            <div class="play-box col-xs-12">
+                <video ref='video' controls width="100%" :src="src" ></video>
+            </div>
+        </div>
+        <div class="node-info" title="视频信息">
+            <!--提交者-->
+            <div class="submitted">
+                <span class="hidden-xs">
+                    <span class="user-picture">
+                        <a href="">
+                            <img src="" alt="">
+                        </a>
+                    </span>
+                </span>
+                <h1 class="title">{{videoData.title}}</h1>
+                "制作者:"<a href="">{{videoData.producer}}</a>
+                "制作日:"<span>2019-09-18 12:12</span>
+            </div>
+            <!--视频描述详情-->
+            <div class="field field-name-body field-type-text-with-summary field-label-hidden">
+                <div class="field-items">
+                    <div class="field-item even" style="display: block; line-height: 27.5555px; height: auto;">
+                        <p>
+                            {{videoData.description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--喜爱和查看-->
+            <div class="node-views">
+                <i class="glyphicon glyphicon-heart">{{videoData.love}}</i>
+                <i class="glyphicon glyphicon-eye-open">{{videoData.views}}</i>
+            </div>
+        </div>
+        <div class="node-buttons">
+            <!--喜爱及收藏-->
+            <span  class="flag-wrapper flag-like flag-like-907940">
+                <button
+                        @click ="addLoved"
+                        id="addloved"
+                        class="flag flag-action flag-link-toggle unflagged btn btn-primary flag-processed"
+                >
+                    <i :class="{
+                      'glyphicon':true,
+                      'glyphicon-heart':!lovedStatus,
+                      'glyphicon-heart-empty':lovedStatus
+                       }"
+                    >like</i>
+                </button>
+                <span class="flag-throbber">&nbsp;</span>
+                <span class="flag-message flag-success-message flag-unflagged-message flag-auto-remove"
+                      style="display: none;">
+          </span>
+            </span>
+            <!--添加分类列表-->
+            <span class="playlist-button-wrapper" @click="list_flag=!list_flag">
+                <button id="addlistbutton" class="add-button btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span>
+                Add to
+                </button>
+                <ul @click.stop
+                    v-show="list_flag"
+                    id="add-palylist"
+                    class="playlists list-unstyled" >
+                <span class="playlists-wrapper">
+                        <li v-for="(item,i) in playlist" class="clearfix" data-nid="">
+                            <label :for="'playlist-'+playlist[i].playListId" class="">
+                                <input
+                                        id="'playlist-'+playlist[i].playListId"
+                                        type="checkbox"
+                                        class="playlist-checkbox custom-checkbox"
+                                        v-checkthebox="{'id':playlist[i].playListId,'list':myplaylist}"
+                                        @click = "addMylist($event,playlist[i].playListId)"
+                                >
+                                {{playlist[i].playListName}}
+                            </label>
+                            <button :id="'delete-playlist-'+playlist[i].playListId"
+                               @click="deletePlayList(playlist[i].playListId)"
+                                    class="btn btn-primary">
+                                删除
+                            </button>
+                    </li>
+
+                </span>
+                <li class="add">
+                    <input class="form-control" type="text" v-model="additionalList" placeholder="Playlist name">
+                    <button
+                            class="create-playlist btn btn-primary"
+                            type="button"
+                            @click="addPlaylist">
+                        <span class="glyphicon glyphicon-plus">添加列表</span>
+                    </button>
+                </li>
+            </ul>
+            </span>
+
+            <!--关注-->
+            <span class="flag-wrapper flag-follow flag-follow-1289541">
+            <a href="" title="" class="flag flag-action flag-link-toggle btn btn-primary flag-processed" rel="nofollow">
+                <i class="glyphicon glyphicon-ok"></i>
+                Follow
+            </a>
+            <span class="flag-throbber">&nbsp;</span>
+    </span>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="./js/Jq.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="./js/bootstrap.js"></script>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-resource.js"></script>
+<script src="./js/axios.js"></script>
+
+
+<!--vue操作-->
+<script>
+
+
+    Vue.prototype.axios=axios;
+    // axios.defaults.baseURL='http://127.0.0.1:3000';
+    var vm = new Vue({
+            el: '#app',
+            data:{
+                videoData:"",
+                src:"",
+                lovedStatus:"",
+                playlist:"",
+                list_flag:false,
+                additionalList:"",
+                playlistId:"",
+                flag:true,
+                myplaylist:"",
+
+            },
+            created(){
+                this.getApi()
+            },
+            methods:{
+                getApi(){
+                    let _this = this;
+                    console.log("=========window.location.href=======",window.location.href);
+                    let requestedUrl = window.location.href;
+                    console.log(requestedUrl);
+                    if (requestedUrl==="http://127.0.0.1:3000/"){
+                        requestedUrl="http://127.0.0.1:3000";
+                        console.log(requestedUrl);
+                    }
+                    axios.get(requestedUrl+"api").then(function(response,) {
+                        console.log("=========pageList=======",response.data,_this);
+                        _this.videoData = response.data;
+                        _this.src = response.data.src;
+                        _this.lovedStatus = response.data.isLoved;
+                        _this.playlist = response.data.playlist;
+                        _this.myplaylist = JSON.parse(response.data.myplaylisResult);
+                        console.log("_this._this.myplaylist",_this.myplaylist);
+                    });
+                },
+                addLoved:function(){
+                    console.log("=============",this.lovedStatus);
+                    this.lovedStatus=!this.lovedStatus;
+                    let isloved;
+                    if (this.lovedStatus===true){
+                        isloved=1
+                    }else{
+                        isloved=0
+                    }
+                    let requestedUrl = window.location.href+"loved?add="+isloved;
+                    axios.get(requestedUrl).then(function(response,){
+                    })
+                },
+                addPlaylist:function() {
+                    if (this.additionalList !==""){
+                        console.log("======请求添加列表的结果========",this.additionalList)
+                        let requestedUrl = window.location.href+"addlist?addName="+this.additionalList;
+                        axios.get(requestedUrl).then(value=>{
+                            console.log("======请求添加列表的结果========",value);
+                            return this.getApi();
+                        })
+
+                    }
+                },
+                deletePlayList:function(id) {
+                    this.playlistId = id;
+                    let requestedUrl = window.location.href+"deletlist?&deletPlayListId="+id;
+                    console.log("======id======",id)
+                    axios.get(requestedUrl).then(value=>{
+                        console.log("======请求添加列表的结果2========",value);
+                         return this.getApi();
+
+                    })
+                },
+                addSelflist:function (id) {
+                },
+                addMylist:function(e,id) {
+                    console.log(e.currentTarget.checked);
+                    let clickIsChecked = e.currentTarget.checked;
+                    let requestedUrl = window.location.href+"addMYlist?isMylist="+clickIsChecked+"&playListId="+id;
+                    console.log("======requestedUrl======",requestedUrl)
+                    axios.get(requestedUrl).then(value=>{
+
+                    })
+                }
+            },
+            directives:{
+                'checkthebox':{
+                    bind:function (el,statelist) {
+                        // console.log("==========statelist==============",statelist)
+                        let value = statelist.value;
+                        let curId = value.id;
+                        let list = value.list;
+                        // console.log("======curId,list=========",curId,list);
+                        for (let i in list){
+                            // console.log("curid",curId,"=====list[i]====",i,list[i].p_id_playListId)
+                            if(curId === list[i].p_id_playListId){
+                                // console.log("存在",list[i].p_id_playListId)
+                                el.checked=true;
+                            }else{
+                                // console.log("不存在",item.p_id_playListId)
+                            }
+                        }
+                        // console.log(el.checked);
+                    },
+                    inserted:function(el){
+                        // el.checked=this.checkboxStatus;
+                        // console.log(el.checked);
+                    },
+                    update:function (el,statelist)  {
+                    }
+                }
+            }
+        },
+    )
+
+</script>
+
+
+
+<script>
+</script>
+</body>
+</html>
