@@ -8,7 +8,7 @@ app.set("view engine","ejs");
 // 静态页面
 app.use(express.static("./public"));
 app.use("/video/:dirname",express.static("./public"));
-app.use(express.static("D:\\iwara_dwon"));
+app.use(express.static("D:\\iwara_dwon")); //视频存放位置
 
 //首页
 app.get("/",router.loadPage);

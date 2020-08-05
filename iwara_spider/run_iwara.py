@@ -37,6 +37,13 @@ def cleanDownFaile(videoId):
     sql = "update iwara_info set isDown=-1 where id=%s" % videoId
     cursor.execute(sql)
     db.commit()
+def  countVideo():
+    os.chdir("/root/iwara_all_linux/filedir/")
+    # os.system('ls -l | grep "^d" | wc -l')
+    with os.popen('ls -l | grep "^d" | wc -l', "r") as p:
+        r = p.read()
+        print("=======已下载的文件数量是========\n",r)
+        print("===============================")
 
 
 run_type = input('请输入运行类型：\n'
@@ -45,6 +52,7 @@ run_type = input('请输入运行类型：\n'
                  '3.压缩文件\n'
                  '4.清空下载文件夹\n'
                  '5.下载错误清理\n'
+                 '6.统计下载文件数目\n'
                  )
 
 if run_type == '1':
@@ -62,3 +70,5 @@ elif run_type =='4':
 elif run_type =='5':
     videoId = input("请输入id号：\n")
     cleanDownFaile(videoId)
+elif run_type =='6':
+    countVideo()

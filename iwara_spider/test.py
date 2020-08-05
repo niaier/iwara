@@ -1,15 +1,15 @@
-import pymysql
-a='1'
+import os
 
-db =pymysql.connect(
-        "127.0.0.1",
-        "root",
-        "root",
-        "iwara",
-)
-cursor = db.cursor()
-sql = "update iwara_info set isDown=-1 where id=1" 
-print(sql)
-cursor.execute(sql)
-db.commit()
-print(results)
+def countVideo():
+#     os.chdir("/root/iwara_all_linux/filedir/")
+#     os.system('ls -l | grep "^d" | wc -l')
+#     os.system('dir')
+    with os.popen("dir","r") as p:
+        r = p.read()
+        print("========r=========\n",)
+        print("========r=========\n")
+
+countVideo()
+
+
+
