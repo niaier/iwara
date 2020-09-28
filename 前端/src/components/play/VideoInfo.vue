@@ -1,6 +1,6 @@
 <!-- 组件说明 -->
 <template>
-  <div class>
+  <div class="video-info">
     <a-row>
       <a-col
         :xs="{ span: 22, offset: 1 }"
@@ -8,31 +8,34 @@
         :xl="{ span: 16, offset: 4 }"
         class="video-info"
       >
-        <h1>{{VideoInfo.title}}</h1>
+        <div><h1 v-html="'&nbsp;&nbsp;'+VideoInfo.title"></h1></div>
         <div class="heart-view clearfix">
           <div class="v-box-heart">
-            <a-icon type="heart" theme="filled" />{{VideoInfo.love}}
-            
+            <span v-html="'&nbsp;&nbsp;'"></span>
+            <a-icon type="heart" theme="filled" />
+            &nbsp;{{ VideoInfo.love }}
+
             <!-- {{videoIndex[i].love}} -->
           </div>
           <div class="v-box-view">
-            <a-icon type="eye" />{{VideoInfo.views}}
+            <a-icon type="eye" />&nbsp;{{ VideoInfo.views }}
             <!-- {{videoIndex[i].views}} -->
           </div>
         </div>
-        <br>
+        <br />
         <div>
-          <span>
+            <span v-html="'&nbsp;'"></span>
             制作者：
-            <a href>{{VideoInfo.producer}}</a>
-          </span>
+            <a href>{{ VideoInfo.producer }}</a>
+
           <span v-html="'&nbsp;&nbsp;&nbsp;&nbsp;'"></span>
 
-          <span>上传时间：{{time}}</span>
+          <span>
+            上传时间：{{ time }}</span>
         </div>
 
         <br />
-        <div>{{VideoInfo.description}}</div>
+        <div><span v-html="'&nbsp;&nbsp;'"></span>{{ VideoInfo.description }}</div>
       </a-col>
     </a-row>
   </div>
@@ -78,7 +81,11 @@ export default {
 
 .video-info {
   // min-height: 100px;
-  border: 2px solid red;
+  // border: 2px solid red;
+  .ant-col {
+    background-color: #fff;
+    border-radius: 2px;
+  }
   .heart-view {
     // height: 20px;
     // color: #eee;

@@ -7,13 +7,17 @@
         :lg="6"
         v-for="count in 9"
         :key="count"
-        @click="selectLove(count)"
+        @click="active(count)"
         
       >
-        <a href="javascript:;" :class="'love-color-'+count">
-          <a-icon type="heart" theme="filled" />
-          <span style="color:black">喜爱等级：{{count}}</span>
-        </a>
+        <div class="love-level-cell" 
+        :class="{ active: currentSort == count }">
+          <a href="javascript:;" :class="'love-color-' + count"
+          @click="selectLove(count)">
+            <a-icon type="heart" theme="filled" />
+            <span style="color: black">喜爱等级：{{ count }}</span>
+          </a>
+        </div>
       </a-col>
     </a-row>
   </div>
@@ -24,10 +28,15 @@
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      currentSort:0,
+    };
   },
   computed: {},
   methods: {
+    active(count) {
+      this.currentSort = count;
+    },
     selectLove(count) {
       let page = this.$route.query.page;
       let sortby = this.$route.query.sortby;
@@ -37,7 +46,7 @@ export default {
         query: {
           love_level: count,
           page: page,
-          sortby
+          sortby,
         },
       });
     },
@@ -51,6 +60,27 @@ export default {
   margin: 0 auto;
   width: 80%;
   text-align: center;
+  .ant-col {
+    text-align: center;
+    .love-level-cell {
+      margin: 0 auto;
+      text-align: center;
+      width: 120px;
+      border: 2px solid rgba($color: #eee, $alpha: 0);
+      border-radius: 6px;
+      a {
+        margin-top: 50%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.active {
+  box-sizing: border-box;
+  border: 2px solid #eee;
+  border-radius: 6px;
+  background-color: #ccc;
 }
 
 .love-color-1 {

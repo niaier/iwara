@@ -8,6 +8,8 @@ export default new Vuex.Store({
     changedCurrent: "",
     indexData: "",
     videoInfo: {title: 'a'},
+    totalCount: 1,
+
   },
   mutations: {
     getChangedCurrent: function (state, changedCurrent) {
@@ -18,6 +20,12 @@ export default new Vuex.Store({
     },
     getVideoInfo: function (state, videoInfo) {
       state.videoInfo = videoInfo
+    },
+    getTotalCount: function (state, totalCount) {
+      state.totalCount = totalCount
+    },
+    getPlayListId: function (state, playListId) {
+      state.playListId = playListId
     }
 
   },

@@ -7,15 +7,20 @@
         :xs="12"
         :lg="6"
         v-for="count in 9"
-        :class="{'active':currentSort==count,
-        }"
         :key="count"
         @click="active(count)"
       >
-        <a href="javascript:;" :class="'love-color-'+count" @click="selectLove(count)">
-          <a-icon type="heart" theme="filled" />
-          <span style="color:black">喜爱等级：{{count}}</span>
-        </a>
+        <div class="love-level-cell" 
+        :class="{ active: currentSort == count }">
+          <a
+            href="javascript:;"
+            :class="'love-color-' + count"
+            @click="selectLove(count)"
+          >
+            <a-icon type="heart" theme="filled" />&nbsp;
+            <span style="color: black">喜爱等级：{{ count }}</span>
+          </a>
+        </div>
       </a-col>
     </a-row>
   </div>
@@ -60,9 +65,26 @@ export default {
   margin: 0 auto;
   width: 80%;
   text-align: center;
+  .ant-col {
+    text-align: center;
+    .love-level-cell {
+      margin: 0 auto;
+      text-align: center;
+      width: 120px;
+      border: 2px solid rgba($color: #eee, $alpha: 0);
+      border-radius: 6px;
+      a {
+        margin-top: 50%;
+        text-align: center;
+      }
+    }
+  }
 }
 .active {
-  background-color: lightblue;
+  box-sizing: border-box;
+  border: 2px solid #eee;
+  border-radius: 6px;
+  background-color: #ccc;
 }
 
 .love-color-1 {

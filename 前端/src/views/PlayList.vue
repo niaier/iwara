@@ -4,13 +4,15 @@
     <SubMenu></SubMenu>
 
     <a-row class="playlist-content clearfix">
-        <a-col ><LeftMenu></LeftMenu></a-col>
-    
-      <a-col   :sm="24" :lg="17" class="playlist-view">
-          <br>
+      <a-col><LeftMenu></LeftMenu></a-col>
+
+      <a-col :sm="24" :lg="17" class="playlist-view">
+        <br />
         <LoveLevel></LoveLevel>
         <br />
         <SearchVideo></SearchVideo>
+        <br />
+        <Pagination></Pagination>
         <br />
         <VideoList></VideoList>
         <br />
@@ -54,7 +56,7 @@ export default {
 
 .playlist-view {
   margin-left: -0.8px;
-//   width: 70%;
+  //   width: 70%;
   float: left;
   border-left: 0.8px solid #e8e8e8;
 }
@@ -62,8 +64,8 @@ export default {
   float: left;
   height: 100%;
   background-color: #fff;
-  ul{
-      border-right:0!important;
+  ul {
+    border-right: 0 !important;
   }
 }
 .clearfix:before,

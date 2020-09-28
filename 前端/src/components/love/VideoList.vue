@@ -21,7 +21,7 @@
 
               <img
                 style="display:block;width:100%"
-                :src="'http://127.0.0.1:3000/video/'+videoIndex[i].dirname+'/'+videoIndex[i].dirname+'.jpg'"
+                :src="'http://192.168.50.221:3000/video/'+videoIndex[i].dirname+'/'+videoIndex[i].dirname+'.jpg'"
               />
 
                               <!-- <img
@@ -84,7 +84,7 @@ export default {
       console.log("videolist", urlQuery);
       axios
         // .get("http://localhost:8080/api/" + (_this.changedCurrent - 1) + "/api")
-        .get("http://localhost:8080/api/love", {
+        .get("love", {
           params: {
             page: page - 1,
             sortby,

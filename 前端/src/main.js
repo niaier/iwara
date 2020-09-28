@@ -5,6 +5,9 @@ import store from './store'
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 
+import axios from 'axios';
+// axios.defaults.baseURL='http://localhost:8080/api'
+axios.defaults.baseURL='http://192.168.50.221:8080/api'
 
 
 // import axios from 'axios';

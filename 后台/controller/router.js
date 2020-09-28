@@ -24,8 +24,16 @@ exports.loadPageData = function (req, res) {
         res.render("404")
     }
     // const p1 = mysqlTools.setMysqlData();
-    let sql = 'SELECT * FROM iwara_info WHERE isDown=1 order by ' + sortBy + ' desc';
+    let sql = 'SELECT count(*) FROM iwara_info WHERE isDown=1';
+    let totalCount;
     mysqlTools.setMysqlData(sql).then(
+        value =>{
+            totalCount = value[0]['count(*)'];
+            console.log('totalCount--------',totalCount)
+            let sql = 'SELECT * FROM iwara_info WHERE isDown=1 order by ' + sortBy + ' desc';
+            return mysqlTools.setMysqlData(sql)
+        }
+    ).then(
         value => {
             //当前页的目录
             let slicedData = dataProcess.dataSlice(value);
@@ -47,6 +55,7 @@ exports.loadPageData = function (req, res) {
                 "videoIndex": curPageIndex,
                 "finalPage": finalPage,
                 "finalUrl": finalUrl,
+                "totalCount":totalCount,
             };
             res.json(data);
         }
@@ -138,7 +147,7 @@ exports.loadMyPlayListData = function(req,res){
     let love_level = req.query.love_level;
     let curPage = req.query.page;
     let sortBy = req.query.sortby || 'upload_time';
-    let playListId = req.query.playlistid ||'1';
+    let playListId = req.query.playListId ||'1';
     let sql;
     console.log('=====================\n',
     req.query,

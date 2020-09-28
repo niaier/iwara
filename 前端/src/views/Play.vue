@@ -1,6 +1,6 @@
 <!-- 组件说明 -->
 <template>
-  <div class>
+  <div class = 'play'>
     <br />
     <PlayContainer  ></PlayContainer>
     <br />
@@ -33,7 +33,7 @@ export default {
       let _this = this;
       let urlParams= _this.$route.params;
       console.log(urlParams);
-      axios.get('http://localhost:8080/api/'+'video/'+urlParams.videoId+'/loadVideoInfo').then(value => {
+      axios.get('video/'+urlParams.videoId+'/loadVideoInfo').then(value => {
         console.log("loadVideoInfo",value)
         _this.videoInfo = value.data;
        _this.$store.commit("getVideoInfo", _this.videoInfo);

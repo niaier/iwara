@@ -1,7 +1,8 @@
 <template>
   <div id="components-layout-demo-basic">
-    <a-layout>
-      <a-layout-header>
+    <a-layout class='clearfix'>
+      <a-layout-header >
+        <!-- class='clearfix' -->
         <div id="menu-bar">
           <div class="left">
             <a-menu v-model="current" mode="horizontal">
@@ -53,6 +54,27 @@ export default {
 
 
 <style lang="scss" scope>
+@import './css/base.scss';
+
+#components-layout-demo-basic{
+  height: 100%;
+  .ant-layout{
+    height: 100%;
+  }
+
+  .ant-layout-header{
+    // height: 100%;
+  }
+  .ant-layout-content{
+    height: 100%;
+    // height: 1000px;
+  }
+  .ant-layout-footer{
+    // height: 100%;
+  }
+}
+
+
 header.ant-layout-header {
   height: auto;
   padding-left: 0;

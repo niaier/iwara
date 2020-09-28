@@ -3,12 +3,8 @@
     <div id="sub-menu">
       <a-menu v-model="current" mode="horizontal">
         <a-menu-item id="sort-by" key="sort">Sort by:</a-menu-item>
-        <a-menu-item key="date" @click="toSortDate">
-Date
-        </a-menu-item>
-        <a-menu-item key="love"  @click="toSortLove">
-          Love
-        </a-menu-item>
+        <a-menu-item key="date" @click="toSortDate"> Date </a-menu-item>
+        <a-menu-item key="love" @click="toSortLove"> Love </a-menu-item>
       </a-menu>
     </div>
   </div>

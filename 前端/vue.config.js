@@ -6,7 +6,7 @@ module.exports = {
   assetsDir: "static", // 打包后静态资源目录，注意public文件下目录（别名）配置，index.html的icon路径
   devServer: {
     open: true,
-    host:"localhost",
+    host:"0.0.0.0",
     port: 8080,
     https: false,
     proxy: {

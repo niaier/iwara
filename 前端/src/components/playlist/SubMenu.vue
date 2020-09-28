@@ -3,12 +3,8 @@
     <div id="sub-menu">
       <a-menu v-model="current" mode="horizontal">
         <a-menu-item id="sort-by" key="sort">Sort by:</a-menu-item>
-        <a-menu-item key="date" @click="toSortDate">
-Date
-        </a-menu-item>
-        <a-menu-item key="love"  @click="toSortLove">
-          Love
-        </a-menu-item>
+        <a-menu-item key="date" @click="toSortDate"> Date </a-menu-item>
+        <a-menu-item key="love" @click="toSortLove"> Love </a-menu-item>
       </a-menu>
     </div>
   </div>
@@ -21,22 +17,49 @@ export default {
       current: ["new"],
     };
   },
+  computed: {
+    playListId: {
+      get() {
+        return this.$store.state.playListId;
+      },
+      set() {},
+    },
+  },
   methods: {
     toSortDate() {
       let page = this.$route.query.page;
       let love_level = this.$route.query.love_level;
+      let playListId = this.$store.state.playListId;
       this.$router.push({
-        path: "/love",
-        query: { page: page, sortby: "upload_time",love_level },
+        path: "/playlist",
+        query: {
+          page: page,
+          sortby: "upload_time",
+          love_level,
+          playListId,
+        },
       });
     },
     toSortLove() {
       let page = this.$route.query.page;
       let love_level = this.$route.query.love_level;
+      let playListId = this.$store.state.playListId;
+      console.log('playListIdplayListId',playListId)
       this.$router.push({
-        path: "/love",
-        query: { page: page, sortby: "love",love_level },
+        path: "/playlist",
+        query: {
+          page: page,
+          sortby: "love",
+          love_level,
+          playListId,
+        },
       });
+    },
+  },
+  watch: {
+    playListId: function () {
+      // this.playListId = this.$store.state.playListId;
+      // console.log("this.$store.state.playListId;", this.$store.state.playListId);
     },
   },
 };

@@ -4,7 +4,7 @@
     <div class="video-list">
       <a-row>
         <a-col :xs="24" :md="12" :lg="8" :xl="6" v-for="(item,i) in indexData.pageLength" :key="i">
-          <a-card style="width: 240px">
+          <a-card style="width: 100%">
             <!-- src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" -->
 
             <a :href="'/play/'+videoIndex[i].dirname" slot="cover">
@@ -21,7 +21,7 @@
 
               <img
                 style="display:block;width:100%"
-                :src="'http://127.0.0.1:3000/video/'+videoIndex[i].dirname+'/'+videoIndex[i].dirname+'.jpg'"
+                :src="'http://192.168.50.221:3000/video/'+videoIndex[i].dirname+'/'+videoIndex[i].dirname+'.jpg'"
               />
             </a>
 
@@ -73,17 +73,17 @@ export default {
       let page = urlQuery.page;
       let sortby = urlQuery.sortby;
       let love_level = urlQuery.love_level;
-      let playlistid =urlQuery.playlistid;
-
+      let playListId =urlQuery.playListId;
+      console.log('playlist-vvvvvv',this.$route.playListId)
       console.log("videolist", urlQuery);
       axios
         // .get("http://localhost:8080/api/" + (_this.changedCurrent - 1) + "/api")
-        .get("http://localhost:8080/api/myPlaylist", {
+        .get("myPlaylist", {
           params: {
             page: page - 1,
             sortby,
             love_level,
-            playlistid
+            playListId
           },
         })
         .then((value) => {
@@ -96,31 +96,17 @@ export default {
     },
   },
   watch: {
-    changedCurrent: function () {
-      let _this = this;
-      _this.changedCurrent = _this.$store.state.changedCurrent;
-      console.log("changedCurrent", _this.changedCurrent);
-      let page = _this.changedCurrent;
-      let sortby = _this.$route.query.sortby;
-      _this.$router.push({
-        path: "/video",
-        query: { page: page, sortby: sortby },
-      });
-    //   axios
-    //     // .get("http://localhost:8080/api/" + (_this.changedCurrent - 1) + "/api")
-    //     .get("http://localhost:8080/api/videoList", {
-    //       params: {
-    //         page: page - 1,
-    //         sortby: sortby,
-    //       },
-    //     })
-    //     .then((value) => {
-    //       _this.indexData = value.data;
-    //       _this.videoIndex = value.data.videoIndex;
-    //       _this.pageList = value.data.pageList;
-    //       _this.curPage = value.data.curPage;
-    //     });
-    },
+    // changedCurrent: function () {
+    //   let _this = this;
+    //   _this.changedCurrent = _this.$store.state.changedCurrent;
+    //   console.log("changedCurrent", _this.changedCurrent);
+    //   let page = _this.changedCurrent;
+    //   let sortby = _this.$route.query.sortby;
+    //   _this.$router.push({
+    //     path: "/playlist",
+    //     query: { page: page, sortby: sortby },
+    //   });
+    // },
     indexData: function () {
       let _this = this;
       let indexData = _this.indexData;

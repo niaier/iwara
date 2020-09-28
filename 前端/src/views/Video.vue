@@ -2,10 +2,11 @@
   <div>
     <SubMenu></SubMenu>
     <br />
+    <Pagination></Pagination>
+    <br />
     <VideoList></VideoList>
     <br />
     <Pagination></Pagination>
-
   </div>
 </template>
 <script>
@@ -22,13 +23,9 @@ export default {
     VideoList,
     Pagination,
   },
-  created() {
+  created() {},
 
-  },
-
-  methods: {
-
-  },
+  methods: {},
 };
 </script>
 

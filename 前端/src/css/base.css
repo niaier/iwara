@@ -1,0 +1,256 @@
+@charset "UTF-8";
+/*编码*/
+/*
+Document : CSS样式初始化
+Description: CSS样式表的初始化，全局样式设置。
+*/
+/* 全局CSS reset */
+/* 页面设置 */
+/* 初始化标签在所有浏览器中的margin、padding值 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button, img {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  _background: url(about:blank);
+}
+
+/* 酌情修改 */
+body {
+  background: #fff;
+  font-family: "微软雅黑","宋体";
+}
+
+body, th, td, input, select, textarea, button {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* 重置页面文字属性 */
+/* 短引用的内容可取值：''或"" */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* 重置嵌套引用*/
+/* 缩写，图片等无边框 */
+fieldset, img, abbr, acronym {
+  border: 0 none;
+}
+
+/* 重置fieldset（表单分组）、图片的边框为0*/
+img {
+  vertical-align: top;
+}
+
+/* 图片在当前行内的垂直位置 */
+abbr, acronym {
+  font-variant: normal;
+}
+
+legend {
+  color: #000;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+/* 重置嵌套引用的引号类型 */
+/* 清除特殊标记的字体和字号 */
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 重置样式标签的样式 */
+/* 上下标 */
+/* 统一上标和下标 */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* 设置表格的边框被合并为一个单一的边框, 指定分隔边框模型中单元格边界之间的距离为0*/
+/* 表格标题及内容居左显示 */
+caption {
+  display: none;
+}
+
+/* 重置表格标题为隐藏 */
+caption, th {
+  text-align: left;
+}
+
+/* 清除列表样式 */
+dl, ul, ol, menu, li {
+  list-style: none;
+}
+
+/* 重置类表前导符号为onne,menu在HTML5中有效 */
+input, button, textarea, select, optgroup, option {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+/* 输入控件字体 */
+input, select, textarea, button {
+  vertical-align: middle;
+  outline: none;
+}
+
+/* 重置表单控件垂直居中*/
+textarea {
+  resize: none;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+/* 鼠标样式 */
+button {
+  border: 0 none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* 重置表单button按钮效果 */
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/* 标题元素样式清除, 让标题都自定义, 适应多个系统应用 */
+/* 链接样式，颜色可酌情修改 */
+/* 未访问的链接 */
+/* 已访问的链接 */
+/* 鼠标移动到链接上 */
+/* 选定的链接 */
+del, ins, a {
+  text-decoration: none;
+}
+
+a:hover, a:active, a:focus {
+  text-decoration: none;
+}
+
+/* 取消a标签点击后的虚线框 */
+a {
+  outline: none;
+  transition: color 0.2s ease 0s;
+}
+
+/*CSS3链接秒数缓冲效果2秒*/
+/* 层板块缓冲效果CSS3       transition: all 0.3s ease 0s;   */
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:after {
+  content: '\20';
+  display: block;
+  clear: both;
+}
+
+.f_yh {
+  font-family: "Arial, Helvetica, sans-serif";
+}
+
+/*f_yh为英文字体样式*/
+.cursor {
+  cursor: pointer;
+}
+
+.pr {
+  position: relative;
+}
+
+/*相对定位*/
+.pa {
+  position: absolute;
+}
+
+/*绝对定位*/
+.fl {
+  float: left;
+}
+
+/*左浮动*/
+.fr {
+  float: right;
+}
+
+/*右浮动*/
+.fl, .fr {
+  display: inline;
+}
+
+/*浮动后，此元素会被显示为内联元素，元素前后没有换行符*/
+/*文字颜色c，背景颜色bc*/
+.c1 {
+  color: #5d5d5d;
+}
+
+.c2 {
+  color: #8f8f8f;
+}
+
+.c3 {
+  color: #e44cea;
+}
+
+.c4 {
+  color: #f49bff;
+}
+
+.c5 {
+  color: #ff0000;
+}
+
+.bc1 {
+  background: #f3f3f3;
+}
+
+.bc2 {
+  background: #f8f8f8;
+}
+
+.bc3 {
+  background: #ffffff;
+}
+
+/*上边距*/
+.mt1 {
+  margin-top: 10px;
+}
+
+.mt2 {
+  margin-top: 20px;
+}
+
+.mt3 {
+  margin-top: 30px;
+}
+
+.mt4 {
+  margin-top: 40px;
+}
+
+.mt5 {
+  margin-top: 50px;
+}

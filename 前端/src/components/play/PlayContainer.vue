@@ -47,7 +47,8 @@ export default {
   watch: {
     VideoInfo:function(){
       let dirname = this.$route.params.videoId;
-      let videoSrc = "http://127.0.0.1:3000/video/"+dirname+'/'+this.$store.state.videoInfo.title+'.mp4'
+      // let title = this.$store.state.videoInfo.title;
+      let videoSrc = "http://192.168.50.221:3000/video/"+dirname+'/'+encodeURIComponent(this.$store.state.videoInfo.title)+'.mp4'
       this.videoSrc = videoSrc;
     }
   },
@@ -59,6 +60,6 @@ export default {
 .playbox {
   // width:100%;
   // margin: 0 auto;
-  border: 2px solid red;
+  // border: 2px solid red;
 }
 </style>

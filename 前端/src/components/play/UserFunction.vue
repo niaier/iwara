@@ -1,7 +1,7 @@
 <!-- 组件说明 -->
 <template>
-  <div class>
-    <a-row>
+  <div class = 'user-function'>
+    <a-row class='clearfix'>
       <a-col
         :xs="{ span: 22, offset: 1 }"
         :lg="{ span: 18, offset: 3 }"
@@ -9,7 +9,6 @@
         class="video-info"
       >
         <!-- <a-button>Like</a-button> -->
-
         <div id="components-dropdown-demo-placement">
           <!-- 喜爱功能 -->
           <a-dropdown :trigger="['click']">
@@ -123,7 +122,7 @@ export default {
       let dirname = this.$route.params.videoId;
       axios
         .get(
-          "http://localhost:8080/api/video/" + dirname + "/loved?add=" + e.key
+          "video/" + dirname + "/loved?add=" + e.key
         )
         .then((value) => {
           console.log(value);
@@ -147,13 +146,13 @@ export default {
       let _this = this;
       let dirname = _this.$route.params.videoId;
       axios
-        .get("http://localhost:8080/api/video/" + dirname + "/loadLoveList")
+        .get("video/" + dirname + "/loadLoveList")
         .then((value) => {
           console.log(value);
           _this.love_level = value.data.love_level;
           console.log("love_level", _this.love_level);
           return axios.get(
-            "http://localhost:8080/api/video/" + dirname + "/loadMyPlayList"
+            "video/" + dirname + "/loadMyPlayList"
           );
         })
         .then((value) => {
@@ -161,7 +160,7 @@ export default {
           // _this.love_level = value.data.love_level;
           _this.myPlayList = value.data;
           return axios.get(
-            "http://localhost:8080/api/video/" + dirname + "/loadPlayList"
+            "video/" + dirname + "/loadPlayList"
           );
         })
         .then((value) => {
@@ -175,7 +174,7 @@ export default {
       let dirname = this.$route.params.videoId;
       axios
         .get(
-          "http://localhost:8080/api/video/" + dirname + "/loved?add=" + count
+          "video/" + dirname + "/loved?add=" + count
         )
         .then((value) => {
           console.log(value);
@@ -188,7 +187,7 @@ export default {
       let dirname = this.$route.params.videoId;
       axios
         .get(
-          "http://localhost:8080/api/video/" +
+          "video/" +
             dirname +
             "/addlist?addName=" +
             playListName
@@ -204,7 +203,7 @@ export default {
       let dirname = this.$route.params.videoId;
       axios
         .get(
-          "http://localhost:8080/api/video/" +
+          "video/" +
             dirname +
             "/addMYlist?isMylist=" +
             $event.target.checked +
@@ -224,7 +223,7 @@ export default {
       let dirname = this.$route.params.videoId;
       axios
         .get(
-          "http://localhost:8080/api/video/" +
+          "video/" +
             dirname +
             "/deletlist?deletPlayListId=" +
             id
@@ -254,16 +253,23 @@ export default {
 
 <style lang='scss' scoped>
 //@import url()
+
+.user-function{
+  // height: 1000px;
+}
+
+
 #components-dropdown-demo-placement {
-  position: absolute;
-  left: -10px;
+  // position: absolute;
+  // left: -10px;
+  margin-left: -10px;
 }
 .ant-btn {
   margin-left: 10px;
 }
 .placement {
-  position: absolute;
-  bottom: auto;
+  // position: absolute;
+  // bottom: auto;
   //   left: -50%;
 }
 .playlist-delete.ant-btn-icon-only.ant-btn-sm {
