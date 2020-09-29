@@ -84,6 +84,14 @@ vue实现，有喜爱分级，播放列表功能，根据日期等排序
 
 ```
 
+#### 视频教程
+
+```
+链接：1FuzzdO1xN5-QtUgkGVWB-w 
+提取码：9dj3 
+解压密码：niaier
+```
+
 
 
 #### 使用方法
@@ -157,9 +165,6 @@ mysql数据
 链接： 1lT7dh-qn8l-okawE5Ua2vw 
 提取码：p1om
 解压密码 niaier
-
-
-
 ```
 
 

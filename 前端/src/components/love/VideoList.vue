@@ -102,15 +102,15 @@ export default {
   },
   watch: {
     changedCurrent: function () {
-      let _this = this;
-      _this.changedCurrent = _this.$store.state.changedCurrent;
-      console.log("changedCurrent", _this.changedCurrent);
-      let page = _this.changedCurrent;
-      let sortby = _this.$route.query.sortby;
-      _this.$router.push({
-        path: "/video",
-        query: { page: page, sortby: sortby },
-      });
+      // let _this = this;
+      // _this.changedCurrent = _this.$store.state.changedCurrent;
+      // console.log("changedCurrent", _this.changedCurrent);
+      // let page = _this.changedCurrent;
+      // let sortby = _this.$route.query.sortby;
+      // _this.$router.push({
+      //   path: "/video",
+      //   query: { page: page, sortby: sortby },
+      // });
       // axios
       //   // .get("http://localhost:8080/api/" + (_this.changedCurrent - 1) + "/api")
       //   .get("http://localhost:8080/api/videoList", {
