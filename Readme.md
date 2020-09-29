@@ -86,6 +86,8 @@ vue实现，有喜爱分级，播放列表功能，根据日期等排序
 
 #### 视频教程
 
+[下载地址]: pan.baidu.com/s/1FuzzdO1xN5-QtUgkGVWB-w
+
 ```
 链接：1FuzzdO1xN5-QtUgkGVWB-w 
 提取码：9dj3 
