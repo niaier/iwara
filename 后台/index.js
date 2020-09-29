@@ -8,9 +8,7 @@ app.use(express.static("D:\\iwara_dwon")); //视频存放位置
 
 // video页面数据
 app.get("/videoListData",router.loadPageData);
-
 app.get("/videoList",router.loadPageData);
-
 app.get("/video/:dirname/api",router.loadVideoData);
 app.get("/video/:dirname/loadVideoInfo",router.loadVideoInfo);
 app.get("/video/:dirname/loadLoveList",router.loadLoveList);

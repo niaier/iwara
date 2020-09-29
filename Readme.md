@@ -104,6 +104,47 @@ mysql
 
 
 
+#### 配置说明
+
+后台配置
+
+```
+静态资源地址设置
+index.js文件下
+app.use(express.static("D:\\iwara_dwon"));
+//把"D:\\iwara_dwon"改为你存储视频的文件位置，注意文件结构
+端口号
+app.listen("3000");
+```
+
+前端配置
+
+```
+由于前后端分离跨域问题，需要配置代理
+vue.config.js文件
+host:"0.0.0.0",
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:3000/", //目标主机，即后台的域名和端口
+        ws: true, //代理的WebSockets
+        changeOrigin: true, //需要虚拟主机站点
+        pathRewrite: {
+          "^/api": ""
+        }
+      }
+    },
+axios配置
+设置根路径
+入口文件main.js
+axios.defaults.baseURL='http://192.168.50.221:8080/api'
+192.168.50.221是本机的ip地址，win+r 输入cmd调出命令行窗口，输入ipconfig -all即可查询
+
+```
+
+mysql导入数据
+
+
+
 ### 资源下载
 
 ```
