@@ -164,8 +164,8 @@ mysql数据
 
 
 视频资源 
-链接： 1lT7dh-qn8l-okawE5Ua2vw 
-提取码：p1om
+链接：/s/1A9ohgJIuoH0HHn9DWD59rg 
+提取码：f37a 
 解压密码 niaier
 ```
 
